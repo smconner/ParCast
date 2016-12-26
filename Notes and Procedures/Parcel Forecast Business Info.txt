@@ -1,0 +1,52 @@
+### General Info ###
+
+Parcel Forecast
+1201 Alaskan Way, Suite 200
+Seattle, WA 98101
+
+(707) 872-7235
+
+IRS EIN: 45-2262040
+
+WA STATE UBI: 603119452
+Validate here: http://dor.wa.gov/content/doingbusiness/registermybusiness/brd/
+
+
+support@parcast.com
+info@parcast.com
+sean@parcast.com
+
+### Authorize.net ###
+
+See Encrypted Mac Widget in Dashboard
+
+### parcast.com SSL Certificate ###
+
+Reference: https://help.ubuntu.com/10.04/serverguide/C/certificates-and-security.html
+Reference: https://help.ubuntu.com/10.04/serverguide/C/httpd.html
+
+/etc/ssl/
+
+-rw-r--r--  1 root root      1751 May 24 20:17 server.key.secure	<< 2048-bit private key, generated with root passphrase 
+-rw-r--r--  1 root root      1679 May 24 20:17 server.key		<< 2048-bit private key, the one without a passphrase, use with our service daemons
+-rw-r--r--  1 root root      1078 May 24 20:29 server.csr		<< 2048-bit ssl cert request file (to be signed by Godaddy.com under smconner account)
+-rw-r--r--  1 root root      1903 May 24 21:21 parcast.com.crt		<< 2048-bit signed ssl certificate (signed by Godaddy.com good for 365 days)
+-rw-r--r--  1 root root      4604 May 24 21:21 gd_bundle.crt		<< some other bundled certificate from godaddy?
+
+
+### Info encoded in the cert-request file i.e. "server.csr"
+
+Country Name (2 letter code) [AU]:US
+State or Province Name (full name) [Some-State]:Washington
+Locality Name (eg, city) []:Seattle
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:Parcel Forecast
+Organizational Unit Name (eg, section) []:
+Common Name (eg, YOUR name) []:parcast.com
+Email Address []:sean@parcast.com
+A challenge password []:
+An optional company name []:Parcast
+
+###
+
+
+

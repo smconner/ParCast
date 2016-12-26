@@ -1,0 +1,93 @@
+
+### Procedures for moving a development snapshot to the live server:
+
+1. login to Rackspace console and create a backup image for possible roll-back
+
+2. edit the mysql config file to reflect the correct host:port, username, password, and database (currently the file that stores this information is 
+
+3. edit 'radius-report-google-map.php' > http://localhost:8888 > http://parcast.com
+
+4. edit all references to local files, such as"
+
+	should be the same now via function: radius-report-generator-engine.php > "/Applications/MAMP/bin/php5.3/bin/php" > "/usr/bin/php"
+	should be the same now via symbolic link: radius-report-generator-engine.php > "/opt/local/bin/wget" > "/usr/bin/wget"
+	should be the same now via symbolic link: radius-report-generator-engine.php > "/sw/bin/inkscape" > "/usr/bin/inkscape"	
+
+
+### Debugging ###
+
+
+radius-report-config.php:
+
+define( "RR_MYSQL_HOST", "localhost:8889"); 	> 	define( "RR_MYSQL_HOST", "parcast.com");
+define( "RR_MYSQL_USER", "root");		>	define( "RR_MYSQL_USER", "root");
+define( "RR_MYSQL_PASS", "root");		>	define( "RR_MYSQL_PASS", "Cochlear91");
+define( "RR_MYSQL_NAME", "PARCAST_DB");		>	define( "RR_MYSQL_NAME", "PARCAST_DB");
+
+
+
+
+### 00. Be sure that the "MYSQL_POINT_GEOMETRY" columns have been re-encoded after an update and/or transfer of a table
+
+	THERE IS NOW A FUNCTION THAT DOES THIS FOR ALL THE DBs
+
+	Reference: http://parcast.com/phpmyadmin/
+
+	ALTER TABLE x DROP COLUMN MYSQL_POINT_GEOMETRY;
+	ALTER TABLE x ADD MYSQL_POINT_GEOMETRY GEOMETRY NOT NULL AFTER longitude;
+	UPDATE x set MYSQL_POINT_GEOMETRY = point(longitude, latitude);
+	ALTER TABLE x ADD SPATIAL INDEX MYSQL_POINT_GEOMETRY (MYSQL_POINT_GEOMETRY);
+
+	SELECT *,AsText(MYSQL_POINT_GEOMETRY) FROM /*[VARIABLE]*/ WHERE MBRContains(GeomFromText('LineString(-175 70, -60 10)'),MYSQL_POINT_GEOMETRY);
+	SELECT *,AsText(MYSQL_POINT_GEOMETRY) FROM NATIONAL_FACILITY FORCE INDEX (MYSQL_POINT_GEOMETRY ) WHERE MBRContains(GeomFromText('LineString(-122.360 47.630, -122.350 47.620)'),MYSQL_POINT_GEOMETRY);
+	SELECT *,AsText(MYSQL_POINT_GEOMETRY) FROM NATIONAL_FACILITY FORCE INDEX (MYSQL_POINT_GEOMETRY ) WHERE MBRContains(GeomFromText('LineString(-61 11, -60 10)'),MYSQL_POINT_GEOMETRY);
+
+
+	for more information see "Date Tracking Table Notes"
+
+
+### 000. you can't use the same username and password for the wordpress database as you use for accessing the radius report database, i.e. the one defined in "wp-config.php" can't be the same as the one defined in "radius-report-config.php" or bad things happen.
+
+### 0000. Check file permissions and ownerships. If necessary change the owner of the all the files recursively to www-data. The command is something like "sudo chown www-data:www-data -R *"
+
+
+
+### If the above steps don't work it's time to turn on debugging in wordpress, php and mysql:
+
+1. edit php.ini, turn on debugging:
+
+	/etc/php5/apache2/php.ini
+	display_errors = Off > On
+	display_startup_errors = Off > On
+
+2. edit the "wp-config.php" file  and uncomment
+
+	Reference: http://codex.wordpress.org/Editing_wp-config.php#Configure_Error_Log
+
+	define('WP_DEBUG',         true);  // Turn debugging ON
+	define('WP_DEBUG_DISPLAY', false); // Turn forced display OFF
+	define('WP_DEBUG_LOG',     true);  // Turn logging to wp-content/debug.log ON
+	@ini_set('display_errors',0);
+
+	/etc/init.d/apache2 restart
+
+3. edit /etc/mysql/my.cnf
+
+	general_log_file        = /var/log/mysql/mysql.log
+	general_log             = 1
+	log_error                = /var/log/mysql/error.log
+	log_slow_queries        = /var/log/mysql/mysql-slow.log
+	log_bin                 = /var/log/mysql/mysql-bin.log
+
+	/etc/init.d/mysql restart
+
+### "Sign Up Now" button on sliders
+
+Edit: includes/featured.php
+
+Change this:
+<!-- 
+<a href="<?php echo($arr[$i]["permalink"]); ?>" title="<?php printf(__('Permanent Link to %s', 'TheCorporation'), $arr[$i]["fulltitle"]) ?>" class="readmore"><span><?php _e('read more','TheCorporation'); ?></span></a> 
+-->
+
+<a href="wp-login.php?action=register" title="Sign Up Now" class="readmore"><span>Sign Up Now</span></a>

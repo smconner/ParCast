@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="CGImap 0.0.2">
+	
+	<!-- THE SITE LOCATION -->
+	<node id="-100000" lon="-122.5204726" lat="47.6357692">
+		<tag k="site_location" v="site"/>
+		<tag k="ref" v=" "/>
+	</node>
+
+		
+	<!-- THE THREE RADII -->	
+	<node id="-100001" lat="47.6357692" lon="-122.5204726">
+		<tag k="nth_mile_radius" v="fourth_mile"/>
+		<tag k="name" v="1/4 Mile Radius"/>
+	</node>
+		
+	<node id="-100002" lat="47.6357692" lon="-122.5204726">
+		<tag k="nth_mile_radius" v="half_mile"/>
+		<tag k="name" v="1/2 Mile Radius"/>
+	</node>
+	
+	<node id="-100003" lat="47.6357692" lon="-122.5204726">
+		<tag k="nth_mile_radius" v="full_mile"/>
+		<tag k="name" v="1 Mile Radius"/>
+	</node>
+
+		
+		
+	<!-- THE HAZMAT SITES -->
+	
+	
+	<node id="-10" lat="47.64868" lon="-122.37878">
+		<tag k="hazmat_class" v="use"/>
+		<tag k="symbol" v="&amp;#x25BC;"/>
+		<tag k="name" v="10"/>
+	</node>
+	
+	<node id="-11" lat="47.648753" lon="-122.378893">
+		<tag k="hazmat_class" v="release"/>
+		<tag k="symbol" v="&amp;#x25A9;"/>
+		<tag k="name" v="11"/>
+	</node>
+	
+	<node id="-12" lat="47.648803" lon="-122.378909">
+		<tag k="hazmat_class" v="release"/>
+		<tag k="symbol" v="&amp;#x25A9;"/>
+		<tag k="name" v="12"/>
+	</node>
+	
+	<node id="-13" lat="47.648803" lon="-122.378909">
+		<tag k="hazmat_class" v="release"/>
+ 		<tag k="symbol" v="&amp;#x25A9;"/>
+		<tag k="name" v="13"/>
+	</node>
+  
+	<node id="-14" lat="47.64951" lon="-122.377513">
+		<tag k="hazmat_class" v="release"/>
+		<tag k="symbol" v="&amp;#x25A9;"/>
+		<tag k="name" v="14"/>
+	</node>
+	
+		<!--  So basically I need to write the nodes here for the points where I want the text marker and line to end -->
+		<node id="-140000001" lat="47.64234" lon="-122.377323"/>
+		
+			<!-- THEN I need to write the way definition to tell the mapnik.xml file that I want to group and use these two nodes as a line segment -->
+			<way id="-100000001">
+				<nd ref="-14"/>						<!-- THIS WOULD BE THE START POINT -->
+				<nd ref="-140000001"/> 				<!-- THIS WOULD BE THE END POINT -->
+				<tag k="text-line" v="segement"/>	<!-- THIS IS HOW THIS WAY IS REFERED TO IN THE MAPNIK.XML RULE FILTER -->
+				<tag k="name" v="14"/>				<!-- THIS IS THE NAME VALUE WE WANT THE LINE SEGMENT TO POINT AT -->
+			</way>
+		
+	 
+	 
+	<node id="-15" lat="47.64748" lon="-122.374829">
+		<tag k="hazmat_class" v="release"/>
+		<tag k="symbol" v="&amp;#x25A9;"/>
+		<tag k="name" v="15"/>
+	</node>
+  
+ 
+
+
+  
+  
+  
+  
+</osm>

@@ -1,0 +1,13 @@
+
+
+
+
+    <!-- data: The data attribute specifies the name of the XML file, downloaded from OpenStreetMap, that contains the map data. With some XSL processors (orp for example) this can be overridden on the command line. -->
+
+    <!-- scale: The scale factor which means how many pixels are used for 1 longitude degree. 1 longitude degree length is shown as 10000 pixels * this scale factor. The default value is 1. Because SVG files are vector graphics, the attribute is used to adjust the width of the roads and size of the text relative to the size of the map, too. Changing this setting alters the size of the map canvas but does not alter the size of the items rendered on the map. A smaller value will make the roads wider and the text larger. A larger value will make the roads thinner and the text smaller. Values between 0.1 and 5 are typical depending on what you want to show. -->
+
+    <!-- symbolScale: All the symbols in the file will be scaled by this number. This is mainly used to scale symbol to have the same pixel size at all zoom levels. -->
+
+    <!-- showScale: This attribute controls whether or not the 0-1km scale is drawn. If showScale="yes" a scale will be draw at the bottom left corner of the canvas. The visual appearance of the scale is controlled by the CSS style classes map-scale-casing, map-scale-core, map-scale-bookend and map-scale-caption. These classes are part of the rules file. -->
+
+    <!-- showBorder: This attribute controls whether or not a border is displayed around the map boundary. The css classes map-border-casing and map-border-core control the visual appearance of the border. -->

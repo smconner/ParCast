@@ -1,0 +1,25 @@
+For a floating notice on the homepage:
+
+1. Put this code in epanel > Intergration > "Add code to the < head > of your blog" :
+
+<style type="text/css">
+.floating_notice {
+	background-image: url("/wp-content/uploads/Parcel-Forecast-go-live.png");
+	position: absolute;
+	width: 240px;
+	height: 295px;
+	display: block;
+	overflow: hidden;
+	top: -99px;
+	visibility: visible;
+	left: 50px;
+        z-index: 10;
+}
+</style>
+
+
+2. Put this code in epanel > Intergration > "Add code to the < body > (good for tracking codes such as googls..) :
+
+<a class="floating_notice" href="mailto:support@parcast.com?subject=Order%20Report&body=Site%20Name:%20%0ASite%20Location%20%28Address%20or%20GPS%29:%20%0ASearch%20Radius:%20%0ASpecial%20Notes:%20%0A%0A%0A%0A%0A%20--%0AThank%20you,%0AParcast%20Team"> </a>
+
+3. Add the corresponding image to the > Media > Library, and put the link in the css above.

@@ -1,0 +1,105 @@
+
+from the users smconner/.tmp/ dir:
+
+perl ../../../osmarender/orp/orp.pl -r ../../../osmarender/stylesheets/osm-map-features-z17.xml ./data.osm
+inkscape -D -d 1200 -e output.png data.svg
+
+perl ../../../osmarender/orp/orp.pl -r ../../../osmarender/stylesheets/osm-map-features-z17.xml ./1302641379_data.osm
+inkscape -D -d 1200 -e output.png 1302641379_data.svg
+
+
+
+_______________
+
+(1) injected into the .osm file after downloading - put nodes at the top, following the <bounds ... />  tag 
+
+<node id="-10001" lat="47.6430756" lon="-122.3467790">
+  <tag k="hazmat_class" v="release">
+  <tag k="name" v="17">
+  <tag k="website" v="http://www.parcast.com/">
+ </node>
+
+<node id="-10002" lat="47.6498801" lon="-122.3506540">
+  <tag k="hazmat_class" v="use"/>
+  <tag k="name" v="18"/>
+  <tag k="website" v="http://www.parcast.com/"/>
+ </node>
+
+<node id="-10003" lat="47.6470756" lon="-122.3487790">
+  <tag k="hazmat_class" v="use-restriction"/>
+  <tag k="name" v="19"/>
+  <tag k="website" v="http://www.parcast.com/"/>
+ </node>
+
+(2) rules file .xml (put it towards the end of the rules so it gets drawn on top of everything else except the big place names)
+
+        <!-- Start Radius Report Rules // Connected to the class definition: '.hazmat_class-caption' in the style defs-->
+                
+        <rule e="node" k="hazmat_class" v="release">
+            <symbol ref="hazmat_class-release" position="center"/>
+            <caption k="name" class="hazmat_class-caption" dx="1.5px" dy=".5" layer="5"/>
+        </rule>
+        
+        <rule e="node" k="hazmat_class" v="use">
+            <symbol ref="hazmat_class-use" position="center"/>
+            <caption k="name" class="hazmat_class-caption" dx="1.5px" dy=".5" layer="5"/>
+        </rule>
+        
+        <rule e="node" k="hazmat_class" v="use-restriction">
+            <symbol ref="hazmat_class-use-restriction" position="center"/>
+            <caption k="name" class="hazmat_class-caption" dx="1.5px" dy=".5" layer="5"/>
+        </rule>
+        
+
+        <!-- End Radius Report Rules -->
+
+
+(2.1) add class def for caption
+
+	<!-- Start Radius Report Captions -->
+            
+	   .hazmat_class-caption   { font-size: 2px; }
+
+	<!-- End Radius Report Captions -->
+
+
+
+(3) .svg files - need to edit with inkscape (adobe illustrator breaks it)
+
+/symbols/hazmat_class-release.svg
+/symbols/hazmat_class-use
+/symbols/hazmat_class-use-restriction.svg
+
+-----------------------------------------------------------------------------------------------------------------
+
+
+(4) render .svg map
+
+perl ../../../osmarender/orp/orp.pl -r ../../../osmarender/stylesheets/osm-map-features-z17.xml ./data.osm
+
+(5) render.png map
+
+inkscape -D -d 1200 -e output.png data.svg 
+
+
+
+
+____________How do I fix overlapping elements like these?___________
+
+
+with this: horizontalProximity="0.00000001"  verticalProximity="0.00000001"
+
+<node id="-1" lat="47.64891500" lon="-122.35848400">
+<tag k="hazmat_class" v="release"/>
+<tag k="name" v="1"/>
+</node>
+
+<node id="-2" lat="47.64891500" lon="-122.35848400">
+<tag k="hazmat_class" v="release"/>
+<tag k="name" v="2"/>
+</node>
+
+<node id="-3" lat="47.64891500" lon="-122.35848400">
+<tag k="hazmat_class" v="release"/>
+<tag k="name" v="3"/>
+</node>

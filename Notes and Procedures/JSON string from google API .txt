@@ -1,0 +1,69 @@
+{
+  "status": "ZERO_RESULTS",
+  "results": [ ]
+}
+
+
+"status": "OK",
+"results": 
+[ 
+
+       {
+    "types": [ "street_address" ],
+    "formatted_address": "205 Nickerson St, Seattle, WA 98109, USA",
+    "address_components": 
+  [ {
+      "long_name": "205",
+      "short_name": "205",
+      "types": [ "street_number" ]
+    }, {
+      "long_name": "Nickerson St",
+      "short_name": "Nickerson St",
+      "types": [ "route" ]
+    }, {
+      "long_name": "Seattle",
+      "short_name": "Seattle",
+      "types": [ "locality", "political" ]
+    }, {
+      "long_name": "Seattle",
+      "short_name": "Seattle",
+      "types": [ "administrative_area_level_3", "political" ]
+    }, {
+      "long_name": "King",
+      "short_name": "King",
+      "types": [ "administrative_area_level_2", "political" ]
+    }, {
+      "long_name": "Washington",
+      "short_name": "WA",
+      "types": [ "administrative_area_level_1", "political" ]
+    }, {
+      "long_name": "United States",
+      "short_name": "US",
+      "types": [ "country", "political" ]
+    }, {
+      "long_name": "98109",
+      "short_name": "98109",
+      "types": [ "postal_code" ]
+    } 
+  ],
+
+
+    "geometry": {
+      "location": {
+        "lat": 47.6474360,
+        "lng": -122.3530810
+      },
+      "location_type": "ROOFTOP",
+      "viewport": {
+        "southwest": {
+          "lat": 47.6442884,
+          "lng": -122.3562286
+        },
+        "northeast": {
+          "lat": 47.6505836,
+          "lng": -122.3499334
+        }
+      }
+    }
+  } ]
+}
